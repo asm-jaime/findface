@@ -3,7 +3,6 @@ package main
 import (
 	"image"
 	"image/jpeg"
-	"log"
 	"os"
 	"strconv"
 	"testing"
@@ -41,6 +40,10 @@ func TestGetClasters(t *testing.T) {
 	}
 	cls := getClasters(dts)
 	for i := range cls {
-		log.Println(len(cls[i]))
+		err = makeGif(cls[i], RECOGNIZER_DIR+"/"+strconv.Itoa(i)+".gif")
+		if err != nil {
+			t.Error(err)
+			return
+		}
 	}
 }
